@@ -5,6 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { NavLink } from "react-router-dom/dist";
+import SwipeableTemporaryDrawer from "../SupportPages/mobiletoggleMenu";
 // import AdbIcon from "@mui/icons-material/Adb";
 const NavigationBar = () => {
   const navItems = [
@@ -28,18 +29,9 @@ const NavigationBar = () => {
         >
           {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              // onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
+          <SwipeableTemporaryDrawer
+            navItems={navItems}
+          ></SwipeableTemporaryDrawer>
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
