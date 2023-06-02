@@ -1,0 +1,14 @@
+.aboutpage {
+  margin-top: 30px;
+}
+.aboutpage img {
+  width: 800px;
+}
+
+@media screen and (max-width: 650px) {
+  .aboutpage img {
+    margin-top: 30px;
+    background-color: aquamarine;
+    width: 300px;
+  }
+}
