@@ -1,0 +1,94 @@
+.sectioncont {
+  width: 100%;
+  text-align: justify;
+  padding: 0 1em 1em;
+}
+.sectioncontainer {
+  box-shadow: 2px 2px 2px gray;
+  /* background-color: #656565; */
+}
+
+.h2head {
+  text-align: center;
+  font-family: roboto;
+  font-weight: 400;
+  font-size: 35px;
+  color: #656565;
+}
+
+.ptext {
+  color: #3c3b3b;
+  font-family: lato;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.col3 {
+  display: block;
+  width: 100%;
+  padding-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  /* position: relative; */
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.copyright {
+  /* text-align: center; */
+  color: #a19c9c;
+  font-family: lato;
+  padding-top: 5px;
+}
+
+.address {
+  color: #3c3b3b;
+  font-family: lato;
+  font-size: 20px;
+  line-height: 1.5;
+}
+.col3 li {
+  list-style: none;
+
+  font-size: 15px;
+}
+
+.col3 span {
+  font-size: medium;
+}
+
+.footercatlinks {
+  width: 100%;
+  padding-left: -10rem;
+}
+.inputandicons {
+  display: block;
+  width: 100%;
+  padding-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.inputandicons div,
+form {
+  margin-top: 7px;
+}
+@media screen and (max-width: 700px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+    width: 100%;
+  }
+  .row .address {
+    color: #3c3b3b;
+    font-family: lato;
+    font-size: 10px;
+    line-height: 0.5;
+    background-color: black;
+  }
+}
