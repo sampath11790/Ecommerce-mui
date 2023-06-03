@@ -13,6 +13,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { NavLink } from "react-router-dom/dist";
 import SwipeableTemporaryDrawer from "../SupportPages/mobiletoggleMenu";
+import Cart from "../Cart/Cart";
 // import AdbIcon from "@mui/icons-material/Adb";
 const NavigationBar = () => {
   const navItems = [
@@ -67,6 +68,7 @@ const NavigationBar = () => {
                 </ListItem>
               ))}
             </List>
+            <Cart></Cart>
           </Box>
         </Toolbar>
       </AppBar>
