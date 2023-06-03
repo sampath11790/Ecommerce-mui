@@ -1,6 +1,13 @@
 import React from "react";
 import classes from "./NavigationBar.module.css";
-import { AppBar, Box, Container, IconButton, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Container,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -23,15 +30,22 @@ const NavigationBar = () => {
           disableGutters
           sx={{
             display: "flex",
-            flexDirection: { xs: "row", md: "column" },
+            flexDirection: { xs: "row", md: "row" },
             justifyContent: { xs: "start", md: "space-around" },
           }}
         >
           {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-
+          {/* <Typography>Ecom</Typography> */}
           <SwipeableTemporaryDrawer
             navItems={navItems}
           ></SwipeableTemporaryDrawer>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ fontFamily: "monospace" }}
+          >
+            FashionFusion
+          </Typography>
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
