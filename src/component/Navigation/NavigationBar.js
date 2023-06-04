@@ -22,6 +22,7 @@ const NavigationBar = () => {
     { path: "/Store", label: "Store" },
     { path: "/About", label: "About" },
     { path: "/contactus", label: "Contact Us" },
+    { path: "/Orders", label: "View oders" },
   ];
 
   return (
@@ -61,7 +62,7 @@ const NavigationBar = () => {
                     className={classes.NavLink}
                     to={item.path}
                     style={{ textDecoration: "none", textAlign: "center" }}
-                    activeClassName={classes.active}
+                    // activeClassName={classes.active}
                   >
                     <span>{item.label}</span>
                   </NavLink>

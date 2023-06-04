@@ -39,6 +39,7 @@ import {
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCart } from "../../Reduxstore/cart/cart-thunk";
+import { postOrder } from "../../Reduxstore/order/order-thunk";
 export default function Cart() {
   const Dispatch = useDispatch();
   const data = useSelector((state) => state.cart.data);
@@ -99,7 +100,9 @@ export default function Cart() {
           </ListItem>
         ))}
         <span>Totel Price :4000</span>
-        <Button variant="primary">place Oreder</Button>
+        <Button variant="primary" onClick={() => Dispatch(postOrder(token))}>
+          place Oreder
+        </Button>
       </List>
       <Divider />
     </Box>

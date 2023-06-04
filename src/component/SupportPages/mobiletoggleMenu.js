@@ -35,14 +35,14 @@ export default function SwipeableTemporaryDrawer({ navItems }) {
     <Box sx={{ width: 250 }} role="presentation">
       <List>
         {navItems.map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem key={index} disablePadding>
             <NavLink
               onClick={toggleDrawer(false)}
               onKeyDown={toggleDrawer(false)}
               className={classes.NavLink}
               to={text.path}
               style={{ textDecoration: "none", textAlign: "center" }}
-              activeClassName={classes.active}
+              // activeClassName={classes.active}
             >
               <ListItemButton>
                 {/* <ListItemIcon>
