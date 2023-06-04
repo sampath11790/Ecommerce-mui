@@ -4,7 +4,7 @@ import { AuthSliceAction } from "./Authslice";
 export const Signup = (obj) => {
   return async (Disptach) => {
     const signupreq = async () => {
-      const response = await fetch(`http://localhost:3000/user/signup`, {
+      const response = await fetch(`http://localhost:3000/user/signup/`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
@@ -20,9 +20,10 @@ export const Signup = (obj) => {
       return data;
     };
     try {
-      await signupreq();
+      const data = await signupreq();
 
-      //   Disptach(AuthSliceAction.login());
+      console.log(data);
+      Disptach(AuthSliceAction.login());
     } catch (error) {
       console.log(error.message);
     }
@@ -31,7 +32,7 @@ export const Signup = (obj) => {
 
 //login
 export const Login = (obj) => {
-  return async (Disptach) => {
+  return async (Dispatch) => {
     const loginreq = async () => {
       const response = await fetch(`http://localhost:3000/user/login`, {
         method: "POST",
@@ -50,9 +51,11 @@ export const Login = (obj) => {
     };
     try {
       const user = await loginreq();
+      alert("login success");
       localStorage.setItem("token", user.Token);
       localStorage.setItem("login", true);
-      Disptach(AuthSliceAction.login());
+      // Disptach(AuthSliceAction.login());
+      Dispatch(AuthSliceAction.setAuth({ login: "true", token: user.Token }));
     } catch (error) {
       console.log(error.message);
     }

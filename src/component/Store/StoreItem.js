@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import cls from "./StoreItem.module.css";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CurrencyRupee, StarBorder } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import { useState } from "react";
@@ -21,8 +21,16 @@ const StoreItem = (props) => {
   const { state } = useLocation();
   // console.log(state);
   const [image, setimage] = useState(state.imageUrl[0]);
-  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const { login, token } = useSelector((state) => state.auth);
 
+  const postCartHandler = (id) => {
+    if (login == "true") {
+      Dispatch(postCart(id, token));
+      return;
+    }
+    navigate("/login");
+  };
   return (
     <>
       <div className={cls.main_container}>
@@ -61,7 +69,7 @@ const StoreItem = (props) => {
               <div>
                 <Button
                   sx={{ background: "gold", color: "black", m: 1, p: 2 }}
-                  onClick={() => Dispatch(postCart(state.id, token))}
+                  onClick={() => postCartHandler(state.id)}
                 >
                   Add Cart
                 </Button>

@@ -3,6 +3,7 @@ import classes from "./NavigationBar.module.css";
 import {
   AppBar,
   Box,
+  Button,
   Container,
   IconButton,
   Toolbar,
@@ -11,11 +12,22 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { NavLink } from "react-router-dom/dist";
+import { NavLink, useNavigate } from "react-router-dom/dist";
 import SwipeableTemporaryDrawer from "../SupportPages/mobiletoggleMenu";
 import Cart from "../Cart/Cart";
+import { AuthSliceAction } from "../../Reduxstore/auth/Authslice";
+import { useDispatch, useSelector } from "react-redux";
+import { ExitToAppSharp } from "@mui/icons-material";
 // import AdbIcon from "@mui/icons-material/Adb";
 const NavigationBar = () => {
+  const { login, token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const Dispatch = useDispatch();
+  const logoutHandler = () => {
+    localStorage.clear();
+    Dispatch(AuthSliceAction.setAuth({ login: null, token: null }));
+    navigate("/About");
+  };
   const navItems = [
     { path: "/Home", label: "Home" },
     { path: "/login", label: "Login" },
@@ -69,7 +81,17 @@ const NavigationBar = () => {
                 </ListItem>
               ))}
             </List>
-            <Cart></Cart>
+            {login && (
+              <Button>
+                <Cart></Cart>
+              </Button>
+            )}
+            {/* {login && <Button >Logout</Button>} */}
+            {login && (
+              <IconButton onClick={logoutHandler}>
+                <ExitToAppSharp sx={{ color: "blue" }}></ExitToAppSharp>
+              </IconButton>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

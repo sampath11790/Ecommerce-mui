@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { child, Men } from "../../Data/Data";
 import Card from "@mui/material/Card";
 // import CardHeader from "@mui/material/CardHeader";
@@ -13,16 +13,31 @@ import ShareIcon from "@mui/icons-material/Share";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
 import { CurrencyRupee, ShoppingCart } from "@mui/icons-material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { postCart } from "../../Reduxstore/cart/cart-thunk";
+import { getallProducts, postCart } from "../../Reduxstore/cart/cart-thunk";
 // import Catagory from "../SupportPages/Catagory";
 
 export default function Store() {
   const Dispatch = useDispatch();
+  const navigate = useNavigate();
   const data = useSelector((state) => state.cart.products);
-  const token = localStorage.getItem("token");
-  console.log("storepage", data);
+  const { login, token } = useSelector((state) => state.auth);
+  // const token = localStorage.getItem("token");
+  // const login = localStorage.getItem("login");
+  useEffect(() => {
+    Dispatch(getallProducts());
+  }, []);
+  //console.log("storepage", data);
+
+  const postCartHandler = (id) => {
+    if (login == "true") {
+      Dispatch(postCart(id, token));
+      return;
+    }
+    navigate("/login");
+  };
+
   return (
     <Box
       sx={{
@@ -35,7 +50,7 @@ export default function Store() {
       }}
     >
       {/* <Catagory></Catagory> */}
-      {[].map((item) => (
+      {data.map((item) => (
         <Card sx={{ maxWidth: 245, m: 1 }} key={item.id}>
           <NavLink
             to="StoreItem"
@@ -69,7 +84,7 @@ export default function Store() {
             </IconButton>
             <IconButton
               aria-label="share"
-              onClick={() => Dispatch(postCart(item.id, token))}
+              onClick={() => postCartHandler(item.id)}
             >
               <span style={{ fontSize: 18, padding: 0, margin: 0 }}>
                 Add Cart

@@ -1,10 +1,12 @@
+import { CartSliceAction } from "./cartslice";
+
 const getdata = async (url, token, method) => {
   const response = await fetch(url, {
     method: method,
 
     headers: {
       "Content-Type": "application/json",
-      Authorization: token ? token : "",
+      Authorization: token ? token : "empty",
     },
   });
 
@@ -37,28 +39,17 @@ const postAndDelete = async (url, obj, token, method) => {
   return data;
 };
 export const getallProducts = () => {
-  return async (Disptach) => {
-    // const getProduct_req = async () => {
-    //   const response = await fetch(`http://localhost/admin/product`, {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       // Authorization: token,
-    //     },
-    //   });
-    //   const data = await response.json();
-
-    //   if (data.error) {
-    //     console.log(data);
-    //     throw new Error("faild");
-    //   }
-
-    //   return data;
-    // };
+  return async (Dispatch) => {
     try {
       //   const data = await getProduct_req();
-      const data = await getdata("http://localhost/admin/product", null, "GET");
-      console.log("data", data);
+      const data = await getdata(
+        "http://localhost:3000/Admin/porduct",
+        null,
+        "GET"
+      );
+
+      Dispatch(CartSliceAction.setProducts(data));
+      // Dispatch(CartSliceAction.setacallcart());
     } catch (error) {
       // console.log("error message");
       // console.log(data);
@@ -67,28 +58,13 @@ export const getallProducts = () => {
 };
 
 export const getCart = (token) => {
-  return async (Disptach) => {
-    // const getcartReq = async () => {
-    //   const response = await fetch(`http://localhost/cart`, {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: token,
-    //     },
-    //   });
-    //   const data = await response.json();
-
-    //   if (data.error) {
-    //     console.log(data);
-    //     throw new Error("faild");
-    //   }
-
-    //   return data;
-    // };
+  return async (Dispatch) => {
     try {
       //   const data = await getcartReq();
-      const data = await getdata("http://localhost/cart", token, "GET");
+      const data = await getdata("http://localhost:3000/cart", token, "GET");
       console.log("data", data);
+
+      Dispatch(CartSliceAction.setCartdata(data));
     } catch (error) {
       console.log(error);
     }
@@ -96,69 +72,36 @@ export const getCart = (token) => {
 };
 
 export const postCart = (id, token) => {
-  return async (Disptach) => {
-    // const postcartReq = async () => {
-    //   const response = await fetch(`http://localhost/cart`, {
-    //     method: "POST",
-    //     body: JSON.stringify({ id: id }),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: token,
-    //     },
-    //   });
-    //   const data = await response.json();
-
-    //   if (data.error) {
-    //     console.log(data);
-    //     throw new Error("faild");
-    //   }
-
-    //   return data;
-    // };
+  return async (Dispatch) => {
     try {
       //   const data = await postcartReq();
       const data = await postAndDelete(
-        "http://localhost/cart",
+        "http://localhost:3000/cart",
         { id: id },
         token,
         "POST"
       );
-      console.log("data", data);
+      // console.log("data", data);
+      Dispatch(CartSliceAction.setacallcart());
     } catch (error) {
-      // console.log("error message");
+      console.log(error);
       // console.log(data);
     }
   };
 };
 
 export const deleteCart = (id, token) => {
-  return async (Disptach) => {
-    // const deletecartReq = async () => {
-    //   const response = await fetch(`http://localhost/cart`, {
-    //     method: "DELETE",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: token,
-    //     },
-    //   });
-    //   const data = await response.json();
-
-    //   if (data.error) {
-    //     console.log(data);
-    //     throw new Error("faild");
-    //   }
-
-    //   return data;
-    // };
+  return async (Dispatch) => {
     try {
       //   const data = await deletecartReq();
       const data = await postAndDelete(
-        "http://localhost/cart",
+        "http://localhost:3000/cart",
         { id: id },
         token,
         "DELETE"
       );
-      console.log("data", data);
+      // console.log("data", data);
+      Dispatch(CartSliceAction.setacallcart());
     } catch (error) {
       // console.log("error message");
       // console.log(data);

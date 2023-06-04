@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialstate = { data: [], products: [] };
+const initialstate = { cartproducts: [], products: [], callcart: 0 };
 
 const CartSlice = createSlice({
   name: "auth",
@@ -9,7 +9,11 @@ const CartSlice = createSlice({
       state.products = action.payload;
     },
     setCartdata(state, action) {
-      state.data = action.payload;
+      state.cartproducts = action.payload;
+      console.log(action.payload);
+    },
+    setacallcart(state, action) {
+      state.callcart++;
     },
   },
 });

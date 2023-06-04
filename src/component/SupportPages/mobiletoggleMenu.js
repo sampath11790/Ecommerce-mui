@@ -13,8 +13,20 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import classes from "./mobiletoggle.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import Cart from "../Cart/Cart";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthSliceAction } from "../../Reduxstore/auth/Authslice";
+import { ExitToAppSharp } from "@mui/icons-material";
 export default function SwipeableTemporaryDrawer({ navItems }) {
+  const { login, token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const Dispatch = useDispatch();
+  const logoutHandler = () => {
+    localStorage.clear();
+    Dispatch(AuthSliceAction.setAuth({ login: null, token: null }));
+    navigate("/About");
+  };
   const [state, setState] = React.useState({
     left: false,
   });
@@ -34,6 +46,17 @@ export default function SwipeableTemporaryDrawer({ navItems }) {
   const list = () => (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
+        {login && (
+          <Button onClick={toggleDrawer(false)}>
+            <Cart></Cart>
+          </Button>
+        )}
+
+        {login && (
+          <IconButton onClick={logoutHandler} onKeyDown={toggleDrawer(false)}>
+            <ExitToAppSharp sx={{ color: "blue" }}></ExitToAppSharp>
+          </IconButton>
+        )}
         {navItems.map((text, index) => (
           <ListItem key={index} disablePadding>
             <NavLink

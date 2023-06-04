@@ -1,6 +1,6 @@
 import cls from "./Cart.module.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Box from "@mui/material/Box";
 // import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 // // import Button from "@mui/material/Button";
@@ -35,20 +35,40 @@ import {
   Delete,
   ExpandLess,
   ExpandMore,
+  ShoppingCartSharp,
   TextIncreaseSharp,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCart } from "../../Reduxstore/cart/cart-thunk";
+import { deleteCart, getCart } from "../../Reduxstore/cart/cart-thunk";
 import { postOrder } from "../../Reduxstore/order/order-thunk";
 export default function Cart() {
   const Dispatch = useDispatch();
-  const data = useSelector((state) => state.cart.data);
+  const { cartproducts, callcart } = useSelector((state) => state.cart);
+
   const token = localStorage.getItem("token");
-  console.log(data);
+  const islogin = localStorage.getItem("login");
+  // console.log(data);
   const [state, setState] = useState({
     right: false,
   });
-
+  let totalamount = 0;
+  const cartdata = cartproducts.reduce((acc, cur) => {
+    totalamount += cur.price * cur.cartitem.TotalQty;
+    acc.push({
+      id: cur.id,
+      imageUrl: cur.imageUrl[0],
+      title: cur.title,
+      price: cur.price,
+      TotalQty: cur.cartitem.TotalQty,
+    });
+    return acc;
+  }, []);
+  useEffect(() => {
+    if (islogin == "true") {
+      console.log("callingcart");
+      Dispatch(getCart(token));
+    }
+  }, [callcart]);
   const toggleDrawer = (open) => (event) => {
     if (
       event &&
@@ -68,17 +88,18 @@ export default function Cart() {
       </Button>
 
       <List>
-        {[].map((item, index) => (
+        {cartdata.map((item, index) => (
           <ListItem key={item.id} disablePadding>
             <Box>
-              <img width={100} height={100} src={item.imageUrl[0]}></img>
+              <img width={100} height={100} src={item.imageUrl}></img>
             </Box>
             <ListItemButton>
               {/* <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon> */}
-              <ListItemText primary={"Qty"} />
-              <ListItemText primary={"price"} />
+              <ListItemText primary={item.TotalQty} />
+              <ListItemText primary={item.price} />
+              <ListItemText primary={item.price * item.TotalQty} />
               <div>
                 <IconButton>
                   <ExpandLess />
@@ -99,7 +120,7 @@ export default function Cart() {
             </ListItemButton>
           </ListItem>
         ))}
-        <span>Totel Price :4000</span>
+        <span>Totel Price :{totalamount}</span>
         <Button variant="primary" onClick={() => Dispatch(postOrder(token))}>
           place Oreder
         </Button>
@@ -123,7 +144,8 @@ export default function Cart() {
             // onClick={handleOpenNavMenu}
             color="inherit"
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <ShoppingCartSharp></ShoppingCartSharp>
           </IconButton>
         </Box>
 

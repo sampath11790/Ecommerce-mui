@@ -9,8 +9,17 @@ import SignIn from "./component/Loginpage/login";
 import Store from "./component/Store/Store";
 import StoreItem from "./component/Store/StoreItem";
 import OrdersPage from "./component/Orders/Orders";
+import { useDispatch } from "react-redux";
+import { AuthSliceAction } from "./Reduxstore/auth/Authslice";
+import React, { useEffect } from "react";
 
 function App() {
+  const Dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const login = localStorage.getItem("login");
+  useEffect(() => {
+    Dispatch(AuthSliceAction.setAuth({ login: login, token: token }));
+  }, []);
   return (
     <div className="App">
       <div>
