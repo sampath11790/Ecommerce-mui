@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialstate = { login: false };
 
 const AuthenticationSlice = createSlice({
-  name: "auth",
+  name: "cart",
   initialState: initialstate,
   reducers: {
     login(state, action) {

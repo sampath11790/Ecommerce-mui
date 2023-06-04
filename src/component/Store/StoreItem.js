@@ -13,10 +13,15 @@ import { useLocation } from "react-router-dom";
 import { CurrencyRupee, StarBorder } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postCart } from "../../Reduxstore/cart/cart-thunk";
 const StoreItem = (props) => {
+  const Dispatch = useDispatch();
+  // const data = useSelector((state) => state.cart.products);
   const { state } = useLocation();
-  console.log(state);
+  // console.log(state);
   const [image, setimage] = useState(state.imageUrl[0]);
+  const token = localStorage.getItem("token");
 
   return (
     <>
@@ -54,7 +59,10 @@ const StoreItem = (props) => {
             </div>
             <div className={cls.btn_container}>
               <div>
-                <Button sx={{ background: "gold", color: "black", m: 1, p: 2 }}>
+                <Button
+                  sx={{ background: "gold", color: "black", m: 1, p: 2 }}
+                  onClick={() => Dispatch(postCart(state.id, token))}
+                >
                   Add Cart
                 </Button>
               </div>

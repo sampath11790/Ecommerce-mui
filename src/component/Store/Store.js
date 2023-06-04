@@ -14,9 +14,15 @@ import ShareIcon from "@mui/icons-material/Share";
 import { Box } from "@mui/material";
 import { CurrencyRupee, ShoppingCart } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { postCart } from "../../Reduxstore/cart/cart-thunk";
 // import Catagory from "../SupportPages/Catagory";
 
 export default function Store() {
+  const Dispatch = useDispatch();
+  const data = useSelector((state) => state.cart.products);
+  const token = localStorage.getItem("token");
+  console.log("storepage", data);
   return (
     <Box
       sx={{
@@ -29,8 +35,8 @@ export default function Store() {
       }}
     >
       {/* <Catagory></Catagory> */}
-      {[...child, ...Men].map((item) => (
-        <Card sx={{ maxWidth: 245, m: 1 }}>
+      {[].map((item) => (
+        <Card sx={{ maxWidth: 245, m: 1 }} key={item.id}>
           <NavLink
             to="StoreItem"
             state={item}
@@ -61,7 +67,10 @@ export default function Store() {
             <IconButton aria-label="share">
               <ShareIcon />
             </IconButton>
-            <IconButton aria-label="share">
+            <IconButton
+              aria-label="share"
+              onClick={() => Dispatch(postCart(item.id, token))}
+            >
               <span style={{ fontSize: 18, padding: 0, margin: 0 }}>
                 Add Cart
               </span>

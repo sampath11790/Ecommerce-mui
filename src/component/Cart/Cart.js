@@ -1,6 +1,6 @@
 import cls from "./Cart.module.css";
 
-import React from "react";
+import React, { useState } from "react";
 // import Box from "@mui/material/Box";
 // import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 // // import Button from "@mui/material/Button";
@@ -37,8 +37,14 @@ import {
   ExpandMore,
   TextIncreaseSharp,
 } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCart } from "../../Reduxstore/cart/cart-thunk";
 export default function Cart() {
-  const [state, setState] = React.useState({
+  const Dispatch = useDispatch();
+  const data = useSelector((state) => state.cart.data);
+  const token = localStorage.getItem("token");
+  console.log(data);
+  const [state, setState] = useState({
     right: false,
   });
 
@@ -61,10 +67,10 @@ export default function Cart() {
       </Button>
 
       <List>
-        {child.map((text, index) => (
-          <ListItem key={text.id} disablePadding>
+        {[].map((item, index) => (
+          <ListItem key={item.id} disablePadding>
             <Box>
-              <img width={100} height={100} src={text.imageUrl[0]}></img>
+              <img width={100} height={100} src={item.imageUrl[0]}></img>
             </Box>
             <ListItemButton>
               {/* <ListItemIcon>
@@ -80,7 +86,9 @@ export default function Cart() {
                 <IconButton>
                   <ExpandMore />
                 </IconButton>
-                <IconButton>
+                <IconButton
+                  onClick={() => Dispatch(deleteCart(item.id, token))}
+                >
                   <Delete />
                 </IconButton>
               </div>
@@ -90,7 +98,7 @@ export default function Cart() {
             </ListItemButton>
           </ListItem>
         ))}
-        <span>Totel Price</span>
+        <span>Totel Price :4000</span>
         <Button variant="primary">place Oreder</Button>
       </List>
       <Divider />
