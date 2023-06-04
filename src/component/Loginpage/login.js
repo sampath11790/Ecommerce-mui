@@ -1,5 +1,5 @@
 // import cls from "./login.module.css";
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,15 +11,48 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import { useDispatch } from "react-redux";
+import { Login, Signup } from "../../Reduxstore/auth/Auth-thunk";
 // import Container from "@mui/material/Container";
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import { ClassSharp } from "@mui/icons-material";
 
 function SignIn() {
-  const [signup, setsignup] = React.useState(false);
+  const [signup, setsignup] = useState(false);
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+  const Disptach = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form data");
+    console.log("form data", data);
+    const obj = {
+      email: data.email,
+      password: data.password,
+    };
+
+    if (obj.email === "" && obj.password === "") {
+      return;
+    }
+    if (!signup) {
+      Disptach(Login(obj));
+      // console.log("login", obj);
+      return;
+    }
+    if (signup && obj.password === data.confirmpassword) {
+      Disptach(Signup(obj));
+      // console.log("signup", obj);
+
+      return;
+    }
+    alert("enter valid password");
+    // console.log(obj);
+  };
+  const enteredDatahandler = (e) => {
+    e.preventDefault();
+    setData({ ...data, [e.target.name]: e.target.value });
   };
   return (
     <>
@@ -64,7 +97,7 @@ function SignIn() {
           </Typography>
           <Box
             component="form"
-            onSubmit={"handleSubmit"}
+            onSubmit={handleSubmit}
             noValidate
             sx={{
               mt: 1,
@@ -75,6 +108,7 @@ function SignIn() {
               margin="normal"
               required
               fullWidth
+              onChange={enteredDatahandler}
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -84,6 +118,7 @@ function SignIn() {
               margin="normal"
               required
               fullWidth
+              onChange={enteredDatahandler}
               name="password"
               label="Password"
               type="password"
@@ -93,6 +128,7 @@ function SignIn() {
                 margin="normal"
                 required
                 fullWidth
+                onChange={enteredDatahandler}
                 name="confirmpassword"
                 label="confirmPassword"
                 type="password"
