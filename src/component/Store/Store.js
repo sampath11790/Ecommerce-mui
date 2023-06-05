@@ -16,23 +16,26 @@ import { CurrencyRupee, ShoppingCart } from "@mui/icons-material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getallProducts, postCart } from "../../Reduxstore/cart/cart-thunk";
+import AlertBox from "../SupportPages/alert";
+import { CartSliceAction } from "../../Reduxstore/cart/cartslice";
 // import Catagory from "../SupportPages/Catagory";
+// import Cart
 
 export default function Store() {
   const Dispatch = useDispatch();
   const navigate = useNavigate();
-  const data = useSelector((state) => state.cart.products);
+  const { products: data, open } = useSelector((state) => state.cart);
   const { login, token } = useSelector((state) => state.auth);
-  // const token = localStorage.getItem("token");
-  // const login = localStorage.getItem("login");
-  useEffect(() => {
-    Dispatch(getallProducts());
-  }, []);
+
+  // useEffect(() => {
+
+  // }, []);
   //console.log("storepage", data);
 
   const postCartHandler = (id) => {
     if (login == "true") {
       Dispatch(postCart(id, token));
+      Dispatch(CartSliceAction.setSuccessMessage());
       return;
     }
     navigate("/login");
@@ -70,7 +73,7 @@ export default function Store() {
             <Typography variant="body2" color="text.secondary">
               {item.title}
             </Typography>
-            <Typography variant="h6" color="text">
+            <Typography variant="div" color="text">
               <CurrencyRupee />
               {item.price}
             </Typography>

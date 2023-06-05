@@ -16,6 +16,7 @@ import { NavLink, useNavigate } from "react-router-dom/dist";
 import SwipeableTemporaryDrawer from "../SupportPages/mobiletoggleMenu";
 import Cart from "../Cart/Cart";
 import { AuthSliceAction } from "../../Reduxstore/auth/Authslice";
+import { CartSliceAction } from "../../Reduxstore/cart/cartslice";
 import { useDispatch, useSelector } from "react-redux";
 import { ExitToAppSharp } from "@mui/icons-material";
 // import AdbIcon from "@mui/icons-material/Adb";
@@ -26,15 +27,17 @@ const NavigationBar = () => {
   const logoutHandler = () => {
     localStorage.clear();
     Dispatch(AuthSliceAction.setAuth({ login: null, token: null }));
+    Dispatch(CartSliceAction.setCallInitial());
     navigate("/About");
   };
   const navItems = [
     { path: "/Home", label: "Home" },
-    { path: "/login", label: "Login" },
+
     { path: "/Store", label: "Store" },
     { path: "/About", label: "About" },
     { path: "/contactus", label: "Contact Us" },
     { path: "/Orders", label: "View oders" },
+    { path: "/login", label: "Login" },
   ];
 
   return (

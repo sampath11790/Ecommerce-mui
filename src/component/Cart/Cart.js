@@ -31,22 +31,20 @@ import { IconButton } from "@mui/material";
 import { child, Men } from "../../Data/Data";
 import {
   Close,
-  CloseFullscreenRounded,
   Delete,
-  ExpandLess,
-  ExpandMore,
   ShoppingCartSharp,
   TextIncreaseSharp,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCart, getCart } from "../../Reduxstore/cart/cart-thunk";
 import { postOrder } from "../../Reduxstore/order/order-thunk";
-export default function Cart() {
+function Cart() {
   const Dispatch = useDispatch();
   const { cartproducts, callcart } = useSelector((state) => state.cart);
+  // const { login, token } = useSelector((state) => state.auth);
 
   const token = localStorage.getItem("token");
-  const islogin = localStorage.getItem("login");
+  const login = localStorage.getItem("login");
   // console.log(data);
   const [state, setState] = useState({
     right: false,
@@ -63,12 +61,15 @@ export default function Cart() {
     });
     return acc;
   }, []);
+  // console.log(callcart);
   useEffect(() => {
-    if (islogin == "true") {
-      console.log("callingcart");
+    if (login == "true" && callcart > 0) {
+      // console.log("calling cart on action");
       Dispatch(getCart(token));
+      return;
     }
   }, [callcart]);
+
   const toggleDrawer = (open) => (event) => {
     if (
       event &&
@@ -82,7 +83,7 @@ export default function Cart() {
   };
 
   const list = () => (
-    <Box sx={{ width: 350 }} role="presentation">
+    <Box sx={{ width: 300 }} role="presentation">
       <Button onClick={toggleDrawer(false)}>
         <Close></Close>
       </Button>
@@ -101,13 +102,13 @@ export default function Cart() {
               <ListItemText primary={item.price} />
               <ListItemText primary={item.price * item.TotalQty} />
               <div>
-                <IconButton>
+                {/* <IconButton>
                   <ExpandLess />
                 </IconButton>
 
                 <IconButton>
                   <ExpandMore />
-                </IconButton>
+                </IconButton> */}
                 <IconButton
                   onClick={() => Dispatch(deleteCart(item.id, token))}
                 >
@@ -161,3 +162,5 @@ export default function Cart() {
     </div>
   );
 }
+
+export default React.memo(Cart);

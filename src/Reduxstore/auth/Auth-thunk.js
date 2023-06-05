@@ -1,3 +1,4 @@
+import { CartSliceAction } from "../cart/cartslice";
 import { AuthSliceAction } from "./Authslice";
 
 //signup
@@ -54,7 +55,7 @@ export const Login = (obj) => {
       alert("login success");
       localStorage.setItem("token", user.Token);
       localStorage.setItem("login", true);
-      // Disptach(AuthSliceAction.login());
+      Dispatch(AuthSliceAction.login());
       Dispatch(AuthSliceAction.setAuth({ login: "true", token: user.Token }));
     } catch (error) {
       console.log(error.message);

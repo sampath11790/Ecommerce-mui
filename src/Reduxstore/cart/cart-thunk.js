@@ -62,7 +62,7 @@ export const getCart = (token) => {
     try {
       //   const data = await getcartReq();
       const data = await getdata("http://localhost:3000/cart", token, "GET");
-      console.log("data", data);
+      // console.log("data", data);
 
       Dispatch(CartSliceAction.setCartdata(data));
     } catch (error) {
