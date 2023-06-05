@@ -43,7 +43,7 @@ export const getallProducts = () => {
     try {
       //   const data = await getProduct_req();
       const data = await getdata(
-        "http://localhost:3000/Admin/porduct",
+        " http://3.83.25.221:3000/Admin/porduct",
         null,
         "GET"
       );
@@ -61,7 +61,7 @@ export const getCart = (token) => {
   return async (Dispatch) => {
     try {
       //   const data = await getcartReq();
-      const data = await getdata("http://localhost:3000/cart", token, "GET");
+      const data = await getdata(" http://3.83.25.221:3000/cart", token, "GET");
       // console.log("data", data);
 
       Dispatch(CartSliceAction.setCartdata(data));
@@ -76,7 +76,7 @@ export const postCart = (id, token) => {
     try {
       //   const data = await postcartReq();
       const data = await postAndDelete(
-        "http://localhost:3000/cart",
+        " http://3.83.25.221:3000/cart",
         { id: id },
         token,
         "POST"
@@ -95,7 +95,7 @@ export const deleteCart = (id, token) => {
     try {
       //   const data = await deletecartReq();
       const data = await postAndDelete(
-        "http://localhost:3000/cart",
+        " http://3.83.25.221:3000/cart",
         { id: id },
         token,
         "DELETE"

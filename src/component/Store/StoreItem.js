@@ -15,6 +15,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postCart } from "../../Reduxstore/cart/cart-thunk";
+import { CartSliceAction } from "../../Reduxstore/cart/cartslice";
 const StoreItem = (props) => {
   const Dispatch = useDispatch();
   // const data = useSelector((state) => state.cart.products);
@@ -27,6 +28,7 @@ const StoreItem = (props) => {
   const postCartHandler = (id) => {
     if (login == "true") {
       Dispatch(postCart(id, token));
+      Dispatch(CartSliceAction.setSuccessMessage());
       return;
     }
     navigate("/login");

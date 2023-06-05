@@ -70,6 +70,10 @@ function Cart() {
     }
   }, [callcart]);
 
+  const OrderHandler = (id) => {
+    window.confirm("are you sure to order this product");
+    Dispatch(postOrder(token));
+  };
   const toggleDrawer = (open) => (event) => {
     if (
       event &&
@@ -121,10 +125,16 @@ function Cart() {
             </ListItemButton>
           </ListItem>
         ))}
-        <span>Totel Price :{totalamount}</span>
-        <Button variant="primary" onClick={() => Dispatch(postOrder(token))}>
-          place Oreder
-        </Button>
+        <Box sx={{ marginTop: 2 }}>
+          <span style={{ fontSize: 20, marginTop: 5 }}>
+            Totel Price =<span>{totalamount}</span>
+          </span>
+        </Box>
+        <Box sx={{ marginTop: 2 }}>
+          <Button variant="contained" onClick={() => OrderHandler()}>
+            place Oreder
+          </Button>
+        </Box>
       </List>
       <Divider />
     </Box>

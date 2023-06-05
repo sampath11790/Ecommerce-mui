@@ -5,7 +5,7 @@ import { AuthSliceAction } from "./Authslice";
 export const Signup = (obj) => {
   return async (Disptach) => {
     const signupreq = async () => {
-      const response = await fetch(`http://localhost:3000/user/signup/`, {
+      const response = await fetch(`http://3.83.25.221:3000/user/signup`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
@@ -22,7 +22,7 @@ export const Signup = (obj) => {
     };
     try {
       const data = await signupreq();
-
+      alert(" successfully registered your account ");
       console.log(data);
       Disptach(AuthSliceAction.login());
     } catch (error) {
@@ -35,7 +35,7 @@ export const Signup = (obj) => {
 export const Login = (obj) => {
   return async (Dispatch) => {
     const loginreq = async () => {
-      const response = await fetch(`http://localhost:3000/user/login`, {
+      const response = await fetch(` http://3.83.25.221:3000/user/login`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {

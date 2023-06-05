@@ -1,3 +1,6 @@
+import { CartSliceAction } from "../cart/cartslice";
+import { OrderSliceAction } from "./orderslice";
+
 const getdata = async (url, token, method) => {
   const response = await fetch(url, {
     method: method,
@@ -33,10 +36,11 @@ const postAndDelete = async (url, token, method) => {
 };
 
 export const getOrder = (token) => {
-  return async (Disptach) => {
+  return async (Dispatch) => {
     try {
-      const data = await getdata("http://localhost/order", token, "GET");
-      console.log("orders", data);
+      const data = await getdata("//3.83.25.221:3000/order", token, "GET");
+      console.log("get orders", data);
+      Dispatch(OrderSliceAction.setOrders(data));
     } catch (error) {
       console.log(error);
     }
@@ -44,10 +48,16 @@ export const getOrder = (token) => {
 };
 
 export const postOrder = (token) => {
-  return async (Disptach) => {
+  return async (Dispatch) => {
     try {
-      const data = await postAndDelete("http://localhost/order", token, "POST");
+      const data = await postAndDelete(
+        "//3.83.25.221:3000/order",
+        token,
+        "POST"
+      );
       console.log("postorder", data);
+      Dispatch(OrderSliceAction.getOrdercall());
+      Dispatch(CartSliceAction.setCartdata([]));
     } catch (error) {
       console.log("error message", error);
       // console.log(data);
