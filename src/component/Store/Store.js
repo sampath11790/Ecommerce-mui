@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { child, Men } from "../../Data/Data";
+import { child, Men, women } from "../../Data/Data";
 import Card from "@mui/material/Card";
 // import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,8 +11,12 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Box } from "@mui/material";
-import { CurrencyRupee, ShoppingCart } from "@mui/icons-material";
+import { Badge, Box } from "@mui/material";
+import {
+  CurrencyRupee,
+  ShoppingCart,
+  ShoppingCartSharp,
+} from "@mui/icons-material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getallProducts, postCart } from "../../Reduxstore/cart/cart-thunk";
@@ -24,13 +28,12 @@ import { CartSliceAction } from "../../Reduxstore/cart/cartslice";
 export default function Store() {
   const Dispatch = useDispatch();
   const navigate = useNavigate();
-  const { products: data, open } = useSelector((state) => state.cart);
+  const {
+    products: data,
+    open,
+    addcart_btn_Data: btnData,
+  } = useSelector((state) => state.cart);
   const { login, token } = useSelector((state) => state.auth);
-
-  // useEffect(() => {
-
-  // }, []);
-  //console.log("storepage", data);
 
   const postCartHandler = (id) => {
     if (login == "true") {
@@ -49,12 +52,15 @@ export default function Store() {
         flexWrap: "wrap",
         flexGrow: 1,
         height: "100%",
-        margin: 2,
+        margin: { xs: 2, md: 2 },
       }}
     >
       {/* <Catagory></Catagory> */}
       {data.map((item) => (
-        <Card sx={{ maxWidth: 245, m: 1 }} key={item.id}>
+        <Card
+          sx={{ maxWidth: { xs: 125, md: 245 }, m: { xs: 1, md: 1 }, p: 0 }}
+          key={item.id}
+        >
           <NavLink
             to="StoreItem"
             state={item}
@@ -63,7 +69,7 @@ export default function Store() {
             {/* <CardHeader /> */}
             <CardMedia
               component="img"
-              height="250"
+              height="310"
               width="400"
               image={item.imageUrl[0]}
               alt="Paella dish"
@@ -71,27 +77,49 @@ export default function Store() {
           </NavLink>
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {item.title}
-            </Typography>
-            <Typography variant="div" color="text">
-              <CurrencyRupee />
+              {item.title} <CurrencyRupee />
               {item.price}
+              {item.id == 2 ? ".00" : ""}
+              <span style={{ fontSize: 10, fontWeight: "bold" }}></span>
             </Typography>
           </CardContent>
-          <CardActions>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
+          <CardActions sx={{ bg: "yellow" }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              // onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              {/* <MenuIcon /> */}
+              {btnData[item.id] != undefined && (
+                <Badge
+                  badgeContent={
+                    btnData[item.id] != undefined ? btnData[item.id] : ""
+                  }
+                  color="error"
+                ></Badge>
+              )}
             </IconButton>
             <IconButton aria-label="share">
               <ShareIcon />
             </IconButton>
             <IconButton
+              sx={{ display: { xs: "none", md: "flex" } }}
               aria-label="share"
               onClick={() => postCartHandler(item.id)}
             >
               <span style={{ fontSize: 18, padding: 0, margin: 0 }}>
                 Add Cart
               </span>
+              <ShoppingCart sx={{ color: "orange", bg: "green" }} />
+            </IconButton>
+            <IconButton
+              sx={{ display: { xs: "flex", md: "none" } }}
+              aria-label="share"
+              onClick={() => postCartHandler(item.id)}
+            >
               <ShoppingCart sx={{ color: "orange", bg: "green" }} />
             </IconButton>
           </CardActions>

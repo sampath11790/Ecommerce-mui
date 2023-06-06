@@ -4,7 +4,6 @@ import {
   AppBar,
   Box,
   Button,
-  Container,
   IconButton,
   Toolbar,
   Typography,
@@ -36,7 +35,7 @@ const NavigationBar = () => {
     { path: "/Store", label: "Store" },
     { path: "/About", label: "About" },
     { path: "/contactus", label: "Contact Us" },
-    { path: "/Orders", label: "View oders" },
+    { path: "/Orders", label: "View orders" },
     { path: "/login", label: "Login" },
   ];
 
@@ -63,6 +62,14 @@ const NavigationBar = () => {
           >
             FashionFusion
           </Typography>
+          {login && (
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <Button>
+                <Cart></Cart>
+              </Button>
+            </Box>
+          )}
+
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
@@ -72,16 +79,16 @@ const NavigationBar = () => {
           >
             <List sx={{ display: "flex", flexDirection: "row" }}>
               {navItems.map((item, index) => (
-                <ListItem key={item.path}>
-                  <NavLink
-                    className={classes.NavLink}
-                    to={item.path}
-                    style={{ textDecoration: "none", textAlign: "center" }}
-                    // activeClassName={classes.active}
-                  >
+                <NavLink
+                  className={classes.NavLink}
+                  to={item.path}
+                  style={{ textDecoration: "none", textAlign: "center" }}
+                  activeClassName={classes.active}
+                >
+                  <ListItem key={index}>
                     <span>{item.label}</span>
-                  </NavLink>
-                </ListItem>
+                  </ListItem>
+                </NavLink>
               ))}
             </List>
             {login && (
@@ -93,6 +100,7 @@ const NavigationBar = () => {
             {login && (
               <IconButton onClick={logoutHandler}>
                 <ExitToAppSharp sx={{ color: "blue" }}></ExitToAppSharp>
+                <span style={{ fontSize: 17 }}>Logout</span>
               </IconButton>
             )}
           </Box>

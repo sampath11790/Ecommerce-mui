@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import About from "./component/About/About";
 import Footer from "./component/Footer/Footer";
@@ -19,6 +19,7 @@ function App() {
   const Dispatch = useDispatch();
   // const { loginsuccess } = useSelector((state) => state.auth);
   const { login, token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,7 +31,10 @@ function App() {
     if (login == "true") {
       console.log("calling cart inital");
       Dispatch(getCart(token));
+      navigate("/Store");
       return;
+    } else {
+      navigate("/Store");
     }
   }, [login]);
   return (

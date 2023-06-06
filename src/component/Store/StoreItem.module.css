@@ -6,6 +6,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* margin-top: 10px; */
+  /* background: rgb(255, 193, 214); */
+  background-color: rgb(240, 240, 240);
 }
 .big_image_container {
   margin-top: 10px;
@@ -16,11 +19,26 @@
 }
 .des_cont {
   margin-left: 10px;
+
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
+}
+.des_cont_child {
+  display: flex;
+  align-items: center;
 }
 .big_image_container img {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   width: 360px;
-  height: 360px;
+  height: auto;
+}
+.largeimage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image_des {
@@ -34,10 +52,11 @@
   width: 600px;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .small_image_container img {
-  width: 150px;
-  height: 150px;
+  width: 115px;
+  height: 118px;
   border-radius: 3px;
   margin: 2px;
   cursor: pointer;
@@ -48,137 +67,74 @@
 .btn_container {
   display: flex;
   width: 100%;
+  width: auto;
 }
-
+.des_cont_child span {
+  margin-left: 5px;
+}
+.price_rating {
+  display: flex;
+}
 @media screen and (max-width: 650px) {
-  .small_image_container {
-    width: 100%;
-    align-items: start;
-    justify-content: start;
-    flex-wrap: wrap;
-  }
-  .small_image_container img {
-    width: 100px;
-    height: 100px;
-    border-radius: 3px;
-    margin: 4px;
-    cursor: pointer;
+  .main_container {
+    width: 95vw !important;
   }
   .big_image_container {
-    margin-top: 10px;
-    width: 300px;
-    /* background-color: blueviolet; */
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-  .main_container {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+  }
+
+  .small_image_container {
+    flex-direction: row;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap !important;
+
+    /* margin: 0%;
+    padding: 0%; */
+    /* width: 100vw; */
+    width: 100%;
+  }
+  .small_image_container img {
+    width: 80px;
+    height: 80px;
   }
   .des_cont {
-    display: flex;
-    justify-self: start;
-    flex-direction: column;
-    /* background-color: #656565; */
-    width: 300px;
-  }
-  .btn_container {
-    display: flex;
     width: 100%;
-    flex-direction: row;
-    /* margin-left: 150px; */
   }
-  .main_image {
-    width: 300px;
+  .des_cont p {
+    width: 95%;
+    padding: 5px;
   }
-  .big_image_container img {
-    width: 300px;
-    height: 300px;
+  .des_cont_child {
+    flex-direction: column;
+  }
+  .largeimage {
+    width: 100%;
+  }
+  .largeimage img {
+    width: 100%;
+  }
+  .item_title {
+    text-align: center;
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 400px) {
-  .small_image_container {
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+@media screen and (max-width: 450px) {
   .small_image_container img {
-    width: 100px;
-    height: 100px;
-    border-radius: 3px;
-    margin: 5px;
-    cursor: pointer;
-  }
-  .big_image_container {
-    margin-top: 10px;
-    width: 100%;
-    /* background-color: blueviolet; */
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-self: center;
-  }
-  .main_container {
-    width: 100%;
-  }
-  .des_cont {
-    display: flex;
-    justify-self: start;
-    flex-direction: column;
-    /* background-color: #656565; */
-    width: 100%;
-  }
-  .btn_container {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    /* margin-left: 150px; */
-  }
-  .main_image {
-    width: 100%;
-  }
-  .big_image_container img {
-    width: 290px;
-    height: 290px;
+    width: 105px;
+    height: 105px;
   }
 }
 
-/* .small_image_container {
-    width: 100%;
-    align-items: start;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+@media screen and (max-width: 380px) {
+  .small_image_container img {
+    width: 120px;
+    height: 120px;
   }
-
-  .big_image_container {
-    margin-top: 10px;
-    width: 100%;
-  
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-  .main_container {
-    width: 100%;
-  }
-  .des_cont {
-    width: 100%;
-  }
-  .btn_container {
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
-  
-  }
-  .main_image {
-    width: 280px;
-  }
-  .big_image_container img {
-    width: 280px;
-    height: 280px;
-  } */
+}

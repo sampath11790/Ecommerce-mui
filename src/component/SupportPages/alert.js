@@ -38,12 +38,12 @@ export default function AlertBox() {
   };
 
   return (
-    <Stack spacing={2} sx={{ width: "100%" }}>
+    <Stack spacing={2} sx={{ width: "80%" }}>
       {/* <Button variant="outlined" onClick={handleClick}>
         Open
       </Button> */}
       <Snackbar open={isopen} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "80%" }}>
           This is a success message!
         </Alert>
       </Snackbar>

@@ -1,20 +1,9 @@
 import cls from "./Cart.module.css";
 
 import React, { useEffect, useState } from "react";
-// import Box from "@mui/material/Box";
-// import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-// // import Button from "@mui/material/Button";
-// import List from "@mui/material/List";
-// import Divider from "@mui/material/Divider";
-// import ListItem from "@mui/material/ListItem";
-// import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
-// import { ArrowDropUpIcon } from "@mui/icons-material/ArrowDropUp"; // ArrowDropDownIcon,
-// import { ArrowDropDownIcon } from "@mui/icons-material/ArrowDropDown";
+
 import {
+  Badge,
   Box,
   Button,
   Divider,
@@ -25,10 +14,9 @@ import {
   SwipeableDrawer,
   TextField,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import { IconButton } from "@mui/material";
-import { child, Men } from "../../Data/Data";
+
 import {
   Close,
   Delete,
@@ -40,7 +28,12 @@ import { deleteCart, getCart } from "../../Reduxstore/cart/cart-thunk";
 import { postOrder } from "../../Reduxstore/order/order-thunk";
 function Cart() {
   const Dispatch = useDispatch();
-  const { cartproducts, callcart } = useSelector((state) => state.cart);
+  const {
+    cartproducts: cartdata,
+    callcart,
+    totalcartitem,
+    totalamount,
+  } = useSelector((state) => state.cart);
   // const { login, token } = useSelector((state) => state.auth);
 
   const token = localStorage.getItem("token");
@@ -49,19 +42,7 @@ function Cart() {
   const [state, setState] = useState({
     right: false,
   });
-  let totalamount = 0;
-  const cartdata = cartproducts.reduce((acc, cur) => {
-    totalamount += cur.price * cur.cartitem.TotalQty;
-    acc.push({
-      id: cur.id,
-      imageUrl: cur.imageUrl[0],
-      title: cur.title,
-      price: cur.price,
-      TotalQty: cur.cartitem.TotalQty,
-    });
-    return acc;
-  }, []);
-  // console.log(callcart);
+
   useEffect(() => {
     if (login == "true" && callcart > 0) {
       // console.log("calling cart on action");
@@ -132,7 +113,7 @@ function Cart() {
         </Box>
         <Box sx={{ marginTop: 2 }}>
           <Button variant="contained" onClick={() => OrderHandler()}>
-            place Oreder
+            place Order
           </Button>
         </Box>
       </List>
@@ -156,7 +137,10 @@ function Cart() {
             color="inherit"
           >
             {/* <MenuIcon /> */}
-            <ShoppingCartSharp></ShoppingCartSharp>
+
+            <Badge badgeContent={totalcartitem} color="error">
+              <ShoppingCartSharp></ShoppingCartSharp>
+            </Badge>
           </IconButton>
         </Box>
 

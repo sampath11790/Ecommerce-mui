@@ -102,4 +102,9 @@ form {
     justify-content: flex-start;
     align-items: flex-start;
   }
+  .sectioncont {
+    width: 100vh !important;
+    text-align: justify;
+    padding: 0%;
+  }
 }

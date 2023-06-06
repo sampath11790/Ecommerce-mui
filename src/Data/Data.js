@@ -100,3 +100,54 @@ export const child = [
     ],
   },
 ];
+
+export const women = [
+  {
+    id: 1,
+    title: "Women Printed Round Neck T-shirt",
+    price: 1900,
+    rating: 4,
+    imageUrl: [
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012495386-Red-Maroon-1000012495386_02-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012495386-Red-Maroon-1000012495386_03-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012495386-Red-Maroon-1000012495386_04-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012495386-Red-Maroon-1000012495386_05-2100.jpg",
+    ],
+  },
+  {
+    id: 2,
+    title: " Women Solid Round Neck Casual Top",
+    price: 1600,
+    rating: 5,
+    imageUrl: [
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000011785067-Green-DarkGreen-1000011785067_01-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000011785067-Green-DarkGreen-1000011785067_02-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000011785067-Green-DarkGreen-1000011785067_03-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000011785067-Green-DarkGreen-1000011785067_04-2100.jpg",
+    ],
+  },
+  {
+    id: 3,
+    title: "Women Printed Round Neck Regular Fit T-shirt",
+    price: 2100,
+    rating: 3,
+    imageUrl: [
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012601998-Blue-Blue-1000012601998_03-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012601998-Blue-Blue-1000012601998_01-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012601998-Blue-Blue-1000012601998_02-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012601998-Blue-Blue-1000012601998_04-2100.jpg",
+    ],
+  },
+  {
+    id: 4,
+    title: "Women Printed Round Neck T-shirt",
+    price: 1900,
+    rating: 5,
+    imageUrl: [
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012536193-Green-Green-1000012536193_01-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012536193-Green-Green-1000012536193_02-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012536193-Green-Green-1000012536193_03-2100.jpg",
+      "https://lmsin.net/cdn-cgi/image/h=730,w=540,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000012536193-Green-Green-1000012536193_04-2100.jpg",
+    ],
+  },
+];

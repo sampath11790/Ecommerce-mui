@@ -1,11 +1,10 @@
-// import cls from "./login.module.css";
+import loginImage from "../../Assets/loginImage.jpg";
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
+
 import TextField from "@mui/material/TextField";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-// import Checkbox from "@mui/material/Checkbox";
+
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -13,9 +12,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
 import { Login, Signup } from "../../Reduxstore/auth/Auth-thunk";
-// import Container from "@mui/material/Container";
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import { ClassSharp } from "@mui/icons-material";
 
 function SignIn() {
   const [signup, setsignup] = useState(false);
@@ -60,7 +56,12 @@ function SignIn() {
       <Typography
         component="h1"
         variant="h5"
-        sx={{ marginTop: 5, marginBottom: -10, color: "purple" }}
+        sx={{
+          marginTop: 5,
+          marginBottom: -10,
+          color: "purple",
+          textAlign: "center",
+        }}
       >
         Style is a way to say who you are without having to speak. Join us and
         let your fashion speak volumes
@@ -79,7 +80,7 @@ function SignIn() {
         }}
       >
         <Box className="loginimage">
-          <img src="https://4.bp.blogspot.com/-8Cf0O7eQTB0/T7IYD0CVv_I/AAAAAAABf5s/NyrH5EE61h8/s1600/02.jpg"></img>
+          <img src={loginImage}></img>
         </Box>
         <Box
           sx={{
@@ -147,13 +148,17 @@ function SignIn() {
               {signup ? "Signup" : " Sign In"}
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
-                <Link onClick={() => setsignup(!signup)} variant="body2">
+                <Link
+                  sx={{ fontSize: 20 }}
+                  onClick={() => setsignup(!signup)}
+                  variant="body2"
+                >
                   {signup ? "Log In" : "Don't have an account? Sign Up"}
                   {}
                 </Link>
